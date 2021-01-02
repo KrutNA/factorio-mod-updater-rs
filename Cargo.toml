@@ -1,0 +1,17 @@
+[package]
+name = "factorio-mod-updater"
+version = "0.1.0"
+authors = ["Krutko Nikita / KrutNA <krutna@pm.me>"]
+edition = "2018"
+
+[features]
+default = []
+
+check_sha1 = [ "sha1" ]
+
+
+[dependencies]
+native-tls = "^0.2.7"
+serde_json = "^1.0"
+
+sha1 = { version = "^0.6.0", optional = true }

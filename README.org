@@ -1,0 +1,56 @@
+* About
+
+*This program is not ready. Use on your own risk.*
+
+Mod downloader, in the future updater for Factorio mods.
+
+I tried to use minimum of deps. Current deps:
+- ~rust-native-tls~ for TLS, protocol for secure over HTTP;
+- ~serde_json~ - for JSON parsing. May be will be removed in the future.
+
+Now HTTPS requests to Factorio Mod Portal API is provided with HTTP/1.0 written on TCP and sockets. 
+
+First working example.
+
+* How to
+
+Application consumes 5 argumnets:
+
+- Factorio version. For example: ~1.0~ or ~1.1~;
+- Factorio mod name, like in the mod link. For example: ~Krastorio2~ or ~angelsinfiniteores~;
+- Path to download (create ~mods~ directory). For example if provided ~./~ mods will be downloaded to ~./mods/~;
+- Username
+- Token
+
+For example:
+
+~./factorio-mod-updater 1.1 Krastorio2 ./ KrutNA a23e50b0f5698891cd3212dcee462d5~
+
+* Realized
+
+- Get from API short info about mod and array of relises (not reqires token nor username);
+- Download mod by release information, [[https://wiki.factorio.com/Mod_portal_API#Downloading_Mods][requires]] username and token and save to path;
+
+* Not tested
+
+- ~sha1~ check of downloaded mod, you can use it with ~check_sha1~ feature.
+- Some API and OS errors.
+
+* Plans and TODOs
+
+In the first stabilize and fix API request, idk, but may be something is not working
+and/or panics on some erros.
+
+Create stable UI and configuratoon lookups.
+
+Create mod updating.
+
+*Multithreding*. Use rust std threads and update/downloads mods in multiple threads!
+
+Searching mods with API. Waiting for [[https://forums.factorio.com/viewtopic.php?f=189&t=93811][isusie]]. Tldr: search by namelist not working.
+
+Provide binaries for platforms with different features:
+- Linux
+- Windows
+- Mac
+
